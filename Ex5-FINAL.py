@@ -95,9 +95,9 @@ def build_tradepost(tile: dict) -> None :
         tile["tradepost"] = True
 
 def build_city(tile: dict, name: str) -> None :
-    if can_build_city(tile) == True :
+    if can_build_city(tile) :
         tile["city"] = name
-    elif can_upgrade(tile) == True:
+    elif can_upgrade(tile) :
         del tile["tradepost"]
         tile["city"] = name
     else :
