@@ -110,9 +110,17 @@ def cut_forest(tile: dict) -> None :
         print("Ceci n'est pas une forêt et elle ne peut pas être coupée")
 
 def change_owner(tile: dict, name: str = None) -> str :
-    old_name = tile.pop("owner")
+    if "owner" not in tile :
+        return None
+    else :
+        old_name = tile["owner"]
+        return old_name
+
+    if name == None :
+        del tile["owner"]
+    else :
+        tile["owner"] = name
     tile["owner"] = name
-    return old_name
     
 def demolish_building(tile: dict) -> bool :
     if has_city(tile) :
