@@ -42,7 +42,7 @@ def new_tile(terrain: str)  ->  dict :
         tile["production"]["materials"] = 1
         return tile
     else :
-        print("Il y a un problème avec le programme")
+        print("Type de tile invalide")
         return None
 
 def has_owner(tile: dict, name: str = None) -> bool :
