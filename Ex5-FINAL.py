@@ -21,7 +21,7 @@ tile_iamtoolazyforthis = { "terrain": "forest",
 
 
 def modify_production(tile: dict, resource: str, amount: int) -> None :
-    if tile["production"][resource] + amount <= 0 :
+    if tile["production"][resource] + amount < 0 :
         print("Il y a un problème avec le programme")
     else :
         tile["production"][resource] += amount #comment modifier un dictionnaire dans un dictionnaire
