@@ -120,8 +120,8 @@ def change_owner(tile: dict, name: str = None) -> str :
         del tile["owner"]
     else :
         tile["owner"] = name
-    tile["owner"] = name
-    
+        
+        
 def demolish_building(tile: dict) -> bool :
     if has_city(tile) :
         del tile["city"]
