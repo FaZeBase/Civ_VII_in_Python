@@ -3,12 +3,11 @@ tile_skel = { "terrain": "water",
                             "materials": 0,
                             "gold": 0},
             }
-tile_debug = { "terrain": "forest",
-              "production": {"food": 2,
+tile_debug = { "terrain": "plain",
+               "production": {"food": 2,
                             "materials": 3,
                             "gold": 4},
-            "city": "Free City",
-            "owner": "FaZeBasescu"
+               "city": "Free City",
             }
 
 tile_iamtoolazyforthis = { "terrain": "forest",
@@ -30,20 +29,17 @@ def new_tile(terrain: str)  ->  dict :
     tile = tile_skel
     if terrain == "water" :
         tile["production"]["food"] = 1
-        return tile
     elif terrain == "plain" :
         tile["production"]["food"] = 2
-        return tile
     elif terrain == "forest" :
          tile["production"]["food"] = 1
          tile["production"]["materials"] = 1
-         return tile
     elif terrain == "mountain" :
         tile["production"]["materials"] = 1
-        return tile
     else :
         print("Type de tile invalide")
         return None
+    return tile
 
 def has_owner(tile: dict, name: str = None) -> bool :
     if "owner" in tile : # Attention ! Pour retrouver une clé dans un dico, utiliser "in"
@@ -64,30 +60,25 @@ def has_tradepost(tile: dict) -> bool :
         return False
     
 def can_build_city(tile: dict) -> bool :
-    if has_city(tile) == False and has_tradepost(tile) == False and \ # on peut aussi utiliser des slashs (\) pour mettre une condition sur plusieurs lignes
+    # on peut aussi utiliser des slashs (\) pour mettre une condition sur plusieurs lignes
+    if not has_city(tile) and not has_tradepost(tile) and \
        has_owner(tile) and tile["terrain"] == "plain" :
-        print("It's True")
         return True
     else :
-        print("It's False")
         return False
 
 def can_build_tradepost(tile: dict) -> bool :
-    if has_city(tile) == False and has_tradepost(tile) == False and \
+    if not has_city(tile) and not has_tradepost(tile) and \
        has_owner(tile) and tile["terrain"] != "water" :
-        print("It's True")
         return True
     else :
-        print("It's False")
         return False
 
 def can_upgrade(tile: dict) -> bool :
-        if has_city(tile) == False and has_tradepost(tile) and \
+        if not has_city(tile) and has_tradepost(tile) and \
            has_owner(tile) and tile["terrain"] == "plain" :
-            print("It's True")
             return True
         else :
-            print("It's False")
             return False
         
 def build_tradepost(tile: dict) -> None :
@@ -109,19 +100,15 @@ def cut_forest(tile: dict) -> None :
     else :
         print("Ceci n'est pas une forêt et elle ne peut pas être coupée")
 
-def change_owner(tile: dict, name: str = None) -> str :
-    if "owner" not in tile :
-        return None
+def change_owner(tile: dict, name: str = None) -> str :    
+    if not has_owner(tile) :
+        old_name = None
     else :
         old_name = tile["owner"]
-        return old_name
+        
+    tile["owner"] = name
+    return old_name
 
-    if name == None :
-        del tile["owner"]
-    else :
-        tile["owner"] = name
-        
-        
 def demolish_building(tile: dict) -> bool :
     if has_city(tile) :
         del tile["city"]
@@ -153,11 +140,12 @@ print(has_owner(tile))
 print(has_city(tile))
 build_city(tile_debug, "Family Friendly Names Please")
 cut_forest(tile_debug)
-
 print(change_owner(tile_debug,"WeedMaster420"))
 print(tile_debug)
 print(change_owner(tile_debug,"FaZeBasescu"))
 tiles = [tile_debug, tile_iamtoolazyforthis]
 print(count_cities(tiles, "FaZeBasescu"))
 print(count_total_production(tiles, "FaZeBasescu"))
+tile_new = change_owner(tile_debug, "Weed Lol")
+print(tile_debug)
 
