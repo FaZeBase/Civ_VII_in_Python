@@ -105,8 +105,7 @@ def change_owner(tile: dict, name: str = None) -> str :
         old_name = None
     else :
         old_name = tile["owner"]
-        
-    tile["owner"] = name
+        tile["owner"] = name
     return old_name
 
 def demolish_building(tile: dict) -> bool :
