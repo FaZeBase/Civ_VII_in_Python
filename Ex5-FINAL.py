@@ -119,7 +119,7 @@ def demolish_building(tile: dict) -> bool :
 def count_cities(tiles: list, name: str) -> int :
     counter = 0
     for tile in tiles :
-        if "city" in tile and tile["owner"] == name :
+        if "city" in tile and "owner" in tile and tile["owner"] == name :
             counter += 1
     return counter
 
