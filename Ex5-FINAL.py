@@ -42,44 +42,26 @@ def new_tile(terrain: str)  ->  dict :
     return tile
 
 def has_owner(tile: dict, name: str = None) -> bool :
-    if "owner" in tile : # Attention ! Pour retrouver une clé dans un dico, utiliser "in"
-        return True
-    else :
-        return False
-    
+    return "owner" in tile : # Attention ! Pour retrouver une clé dans un dico, utiliser "in"
+      
 def has_city(tile: dict) -> bool :
-    if "city" in tile :
-        return True
-    else :
-        return False
+    return "city" in tile :
     
 def has_tradepost(tile: dict) -> bool :
-    if "tradepost" in tile:
-        return True
-    else :
-        return False
+    return "tradepost" in tile :
     
 def can_build_city(tile: dict) -> bool :
     # on peut aussi utiliser des slashs (\) pour mettre une condition sur plusieurs lignes
-    if not has_city(tile) and not has_tradepost(tile) and \
+    return not has_city(tile) and not has_tradepost(tile) and \
        has_owner(tile) and tile["terrain"] == "plain" :
-        return True
-    else :
-        return False
 
 def can_build_tradepost(tile: dict) -> bool :
-    if not has_city(tile) and not has_tradepost(tile) and \
+    return not has_city(tile) and not has_tradepost(tile) and \
        has_owner(tile) and tile["terrain"] != "water" :
-        return True
-    else :
-        return False
 
 def can_upgrade(tile: dict) -> bool :
-        if not has_city(tile) and has_tradepost(tile) and \
+    return not has_city(tile) and has_tradepost(tile) and \
            has_owner(tile) and tile["terrain"] == "plain" :
-            return True
-        else :
-            return False
         
 def build_tradepost(tile: dict) -> None :
     if can_build_tradepost(tile) :
