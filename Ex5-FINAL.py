@@ -15,7 +15,7 @@ tile_iamtoolazyforthis = { "terrain": "forest",
                            "materials": 6,
                            "gold": 7},
                            "city": "Free Dos",
-                           "owner": "FaZeBasescu"
+                           "owner": "FaZeBasescu-AG"
                            }
 
 
@@ -121,12 +121,12 @@ print(has_owner(tile))
 print(has_city(tile))
 build_city(tile_debug, "Family Friendly Names Please")
 cut_forest(tile_debug)
-print(change_owner(tile_debug,"WeedMaster420"))
+print(change_owner(tile_debug,"IDK-TBH"))
 print(tile_debug)
-print(change_owner(tile_debug,"FaZeBasescu"))
+print(change_owner(tile_debug,"FaZeBasescu-AG"))
 tiles = [tile_debug, tile_iamtoolazyforthis]
-print(count_cities(tiles, "FaZeBasescu"))
-print(count_total_production(tiles, "FaZeBasescu"))
-tile_new = change_owner(tile_debug, "Weed Lol")
+print(count_cities(tiles, "FaZeBasescu-AG"))
+print(count_total_production(tiles, "FaZeBasescu-AG"))
+tile_new = change_owner(tile_debug, "Test")
 print(tile_debug)
 
